@@ -8,112 +8,109 @@
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-    
+      <div class="nav-bar">
+          <nav>
+              <h2 class="logo">  <a href="http://localhost:3000/user/home"><img src="TemplateData/LOGO.jpg" alt="Travel Website Logo"></a>  </h2>
+              <ul>
+                  <li><a href="http://localhost:3000/user/home">Home</a></li>
+                  <li class="dropdown">
+                      <a>Country</a>
+                      <ul class="dropdown-menu">
+                          <li><a href="http://localhost:3000/user/country/usa">USA</a></li>
+                          <li><a href="http://localhost:3000/user/country/mexico">Mexico</a></li>
+                          <li><a href="http://localhost:3000/user/country/france">France</a></li>
+                          <li><a href="http://localhost:3000/user/country/italy">Italy</a></li>
+                          <li><a href="http://localhost:3000/user/country/china">China</a></li>
+                          <li><a href="http://localhost:3000/user/country/germany">Germany</a></li>
+                          <li><a href="http://localhost:3000/user/country/spain">Spain</a></li>
+                          <li><a href="http://localhost:3000/user/country/turkey">Turkey</a></li>
+                          <li><a href="http://localhost:3000/user/country/thailand">Thailand</a></li>
+                          <li><a href="http://localhost:3000/user/country/UK">UK</a></li>
+                      </ul>
+                  </li>
+                  <li><a href="http://localhost:3000/user/home2">Stories</a></li>
+                  <li><a href="http://localhost:3000/user/games/">Games</a></li>
+                  <li><a href="http://localhost:3000/user/about">About Us</a></li>
+                  <li><a href="http://localhost:3000/user/faq">FAQ</a></li>
 
-   <div class="nav-bar">
-    <nav>
-      <h2 class="logo">  <a href="http://localhost:3000/user/home"><img src="TemplateData/LOGO.jpg" alt="Travel Website Logo"></a>  </h2>
-        <ul>
-            <li><a href="http://localhost:3000/user/home">Home</a></li>
-            <li class="dropdown">
-              <a>Country</a>
-              <ul class="dropdown-menu">
-                  <li><a href="http://localhost:3000/user/country/usa">USA</a></li>
-                  <li><a href="http://localhost:3000/user/country/mexico">Mexico</a></li>
-                  <li><a href="http://localhost:3000/user/country/france">France</a></li>
-                  <li><a href="http://localhost:3000/user/country/italy">Italy</a></li>
-                  <li><a href="http://localhost:3000/user/country/china">China</a></li>
-                  <li><a href="http://localhost:3000/user/country/germany">Germany</a></li>
-                  <li><a href="http://localhost:3000/user/country/spain">Spain</a></li>
-                  <li><a href="http://localhost:3000/user/country/turkey">Turkey</a></li>
-                  <li><a href="http://localhost:3000/user/country/thailand">Thailand</a></li>
-                  <li><a href="http://localhost:3000/user/country/UK">UK</a></li>
               </ul>
-          </li>
-          <li><a href="http://localhost:3000/user/home2">Stories</a></li>
-            <li><a href="http://localhost:3000/user/games/">Games</a></li>
-            <li><a href="http://localhost:3000/user/about">About Us</a></li>
-            <li><a href="http://localhost:3000/user/faq">FAQ</a></li>
-            
-        </ul>
 
-    </nav>
-</div>
-   
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=1400 height=700></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
+          </nav>
       </div>
-      <div id="unity-mobile-warning">
-        WebGL builds are not supported on mobile devices.
+      <div id="unity-container" class="unity-desktop">
+          <canvas id="unity-canvas" width=1400 height=700></canvas>
+          <div id="unity-loading-bar">
+              <div id="unity-logo"></div>
+              <div id="unity-progress-bar-empty">
+                  <div id="unity-progress-bar-full"></div>
+              </div>
+          </div>
+          <div id="unity-mobile-warning">
+              WebGL builds are not supported on mobile devices.
+          </div>
+          <div id="unity-footer">
+              <div id="unity-webgl-logo"></div>
+              <div id="unity-fullscreen-button"></div>
+              <div id="unity-build-title">tornado</div>
+          </div>
       </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">tornado</div>
-      </div>
-    </div>
-    <script>
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/Tornado3D.loader.js";
-      var config = {
-        dataUrl: buildUrl + "/Tornado3D.data",
-        frameworkUrl: buildUrl + "/Tornado3D.framework.js",
-        codeUrl: buildUrl + "/Tornado3D.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "tornado",
-        productVersion: "0.1",
-      };
-
-      var container = document.querySelector("#unity-container");
-      var canvas = document.querySelector("#unity-canvas");
-      var loadingBar = document.querySelector("#unity-loading-bar");
-      var progressBarFull = document.querySelector("#unity-progress-bar-full");
-      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-      var mobileWarning = document.querySelector("#unity-mobile-warning");
-
-      // By default Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
-
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.className = "unity-mobile";
-        // Avoid draining fillrate performance on mobile devices,
-        // and default/override low DPI mode on mobile browsers.
-        config.devicePixelRatio = 1;
-        mobileWarning.style.display = "block";
-        setTimeout(() => {
-          mobileWarning.style.display = "none";
-        }, 5000);
-      } else {
-        canvas.style.width = "1400px";
-        canvas.style.height = "700px";
-      }
-      loadingBar.style.display = "block";
-
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = 100 * progress + "%";
-        }).then((unityInstance) => {
-          loadingBar.style.display = "none";
-          fullscreenButton.onclick = () => {
-            unityInstance.SetFullscreen(1);
+      <script>
+          var buildUrl = "Build";
+          var loaderUrl = buildUrl + "/Tornado3D.loader.js";
+          var config = {
+              dataUrl: buildUrl + "/Tornado3D.data",
+              frameworkUrl: buildUrl + "/Tornado3D.framework.js",
+              codeUrl: buildUrl + "/Tornado3D.wasm",
+              streamingAssetsUrl: "StreamingAssets",
+              companyName: "DefaultCompany",
+              productName: "tornado",
+              productVersion: "0.1",
           };
-        }).catch((message) => {
-          alert(message);
-        });
-      };
-      document.body.appendChild(script);
-    </script>
+
+          var container = document.querySelector("#unity-container");
+          var canvas = document.querySelector("#unity-canvas");
+          var loadingBar = document.querySelector("#unity-loading-bar");
+          var progressBarFull = document.querySelector("#unity-progress-bar-full");
+          var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+          var mobileWarning = document.querySelector("#unity-mobile-warning");
+
+          // By default Unity keeps WebGL canvas render target size matched with
+          // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+          // Set this to false if you want to decouple this synchronization from
+          // happening inside the engine, and you would instead like to size up
+          // the canvas DOM size and WebGL render target sizes yourself.
+          // config.matchWebGLToCanvasSize = false;
+
+          if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+              container.className = "unity-mobile";
+              // Avoid draining fillrate performance on mobile devices,
+              // and default/override low DPI mode on mobile browsers.
+              config.devicePixelRatio = 1;
+              mobileWarning.style.display = "block";
+              setTimeout(() => {
+                  mobileWarning.style.display = "none";
+              }, 5000);
+          } else {
+              canvas.style.width = "1400px";
+              canvas.style.height = "700px";
+          }
+          loadingBar.style.display = "block";
+
+          var script = document.createElement("script");
+          script.src = loaderUrl;
+          script.onload = () => {
+              createUnityInstance(canvas, config, (progress) => {
+                  progressBarFull.style.width = 100 * progress + "%";
+              }).then((unityInstance) => {
+                  loadingBar.style.display = "none";
+                  fullscreenButton.onclick = () => {
+                      unityInstance.SetFullscreen(1);
+                  };
+              }).catch((message) => {
+                  alert(message);
+              });
+          };
+          document.body.appendChild(script);
+      </script>
   </body>
 </html>
